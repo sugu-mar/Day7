@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task (c)</title>
+    <style>
+      body {
+        background-color: olive;
+      }
+      h3,
+      p {
+        color: white;
+        padding: 20px;
+        background-color: brown;
+        width: max-content;
+        border-radius: 40px;
+      }
+
+      p {
+        font-size: 30px;
+        margin-top: 80px;
+        padding: 20px;
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      (c) Print the following details name, capital, flag using forEach function
+    </h3>
+
+    <p>Open console to view answer</p>
+
+    <script>
+      let allCountryDetails = new XMLHttpRequest();
+      allCountryDetails.open("GET", "https://restcountries.com/v3.1/all", true);
+      allCountryDetails.send();
+      allCountryDetails.onload = () => {
+        let data = JSON.parse(allCountryDetails.response);
+
+        // const number = data.map((key) => console.log(key));
+        const allData = data.forEach((element, key) => {
+          console.log(1 + +key);
+          //   console.log(element.name);
+          console.log(`country name: ${element.name.common}`);
+          console.log(`capital: ${element.capital}`);
+          console.log(`flag: ${element.flag}`);
+          console.log(`flags image link: ${element.flags.png}`);
+          console.log("\n \n \n \n");
+        });
+      };
+    </script>
+  </body>
+</html>

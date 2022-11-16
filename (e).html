@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task (e)</title>
+    <style>
+      body {
+        background-color: olive;
+      }
+      h3,
+      p {
+        color: white;
+        padding: 20px;
+        background-color: brown;
+        width: max-content;
+        border-radius: 40px;
+      }
+
+      p {
+        font-size: 30px;
+        margin-top: 80px;
+        padding: 20px;
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>(e) Print the country which uses US Dollars as currency</h3>
+
+    <p>open console to view answer</p>
+    <script>
+      let request = new XMLHttpRequest();
+      request.open("GET", "https://restcountries.com/v3.1/all", true);
+      request.send();
+      request.onload = () => {
+        let data = JSON.parse(request.response);
+        //  console.log(data)
+        let user = data.filter((country) => country.currencies !== undefined);
+        // console.log(user.length)
+        let usDollar = user.filter((data) => {
+          for (let key in data.currencies) {
+            if (data.currencies[key].name === "United States dollar") {
+              return data;
+            }
+          }
+        });
+        console.log(`countries that uses US Dollar as currency: \n \n\n`);
+
+        for (const key in usDollar) {
+          console.log(`${1 + +key}.${usDollar[key].name.common}`);
+          console.log(`currency name  : ${usDollar[key].currencies.USD.name} 
+currency symbol: ${usDollar[key].currencies.USD.symbol}`);
+          console.log(`\n\n\n\n\n`);
+        }
+      };
+    </script>
+  </body>
+</html>

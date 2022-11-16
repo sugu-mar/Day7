@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task (a)</title>
+    <style>
+      body {
+        background-color: olive;
+      }
+      h3,
+      p {
+        color: white;
+        padding: 20px;
+        background-color: brown;
+        width: max-content;
+        border-radius: 30px;
+      }
+
+      p {
+        font-size: 30px;
+        margin-top: 80px;
+        padding: 20px;
+        background-color: brown;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>
+      (a) Get all the countries from the Asia continent /region using the Filter
+      function
+    </h3>
+
+    <p>open console to view answer</p>
+
+    <script>
+      let asia = new XMLHttpRequest();
+      asia.open("GET", "https://restcountries.com/v3.1/all", true);
+      asia.send();
+      asia.onload = () => {
+        let data = JSON.parse(asia.response);
+
+        const asiaRegion = data.filter((element) => element.region == "Asia");
+
+        const countryName = asiaRegion.map((element) => element.name.common);
+
+        for (const key in asiaRegion) {
+          console.log(
+            `${1 + +key}. country name: ${asiaRegion[key].name.common}`
+          );
+          console.log(asiaRegion[key]);
+          console.log("\n \n \n \n \n ");
+        }
+      };
+    </script>
+  </body>
+</html>
